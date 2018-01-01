@@ -47,7 +47,7 @@ namespace CardCollectorStandard.Domain.Facades
 
         public void RemoveCardFromCollection(string cardtoRemove)
         {
-            //TODO: Implement this
+            this.CardService.RemoveCardFromCollection(cardtoRemove);
         }
     }
 }
