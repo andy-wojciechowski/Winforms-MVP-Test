@@ -13,7 +13,7 @@ namespace CardCollectorMVPTest.Forms
         private DataGridViewRow _lastSelectedRow;
         private bool IsDataBound;
 
-        public SetSelectionList() : base()
+        public SetSelectionList()
         {
             InitializeComponent();
             using (var container = ObjectFactory.GetContainer())
