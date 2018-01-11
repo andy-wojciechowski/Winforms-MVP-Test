@@ -1,4 +1,5 @@
-﻿using CardCollectorMVPTest.Presenters;
+﻿using CardCollectorMVPTest.DependencyResolution;
+using CardCollectorMVPTest.Presenters;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Windows.Forms;
 
 namespace CardCollectorMVPTest.Forms
 {
-    public partial class SetSelectionList : View
+    public partial class SetSelectionList : Form
     {
         public ISetSelectionPresenter Presenter { get; set; }
         private DataGridViewRow _lastSelectedRow;
@@ -15,6 +16,10 @@ namespace CardCollectorMVPTest.Forms
         public SetSelectionList() : base()
         {
             InitializeComponent();
+            using (var container = ObjectFactory.GetContainer())
+            {
+                this.Presenter = container.GetInstance<ISetSelectionPresenter>();
+            }
             Presenter.SetView(this);
         }
 

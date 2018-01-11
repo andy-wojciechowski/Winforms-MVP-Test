@@ -1,4 +1,5 @@
-﻿using CardCollectorMVPTest.Presenters;
+﻿using CardCollectorMVPTest.DependencyResolution;
+using CardCollectorMVPTest.Presenters;
 using CardCollectorMVPTest.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Windows.Forms;
 
 namespace CardCollectorMVPTest.Forms
 {
-    public partial class EditCardCollection : View
+    public partial class EditCardCollection : Form
     {
         public IEditCardCollectionPresenter Presenter { get; set; }
         private DataGridViewRow _lastOwnedRow { get; set; }
@@ -16,9 +17,13 @@ namespace CardCollectorMVPTest.Forms
         private Guid SetId { get; set; }
         private bool IsDataBound { get; set; }
 
-        public EditCardCollection(Guid setID) : base()
+        public EditCardCollection(Guid setID)
         {
             InitializeComponent();
+            using (var container = ObjectFactory.GetContainer())
+            {
+                this.Presenter = container.GetInstance<IEditCardCollectionPresenter>();
+            }
             Presenter.SetView(this);
             this.SetId = setID;
         }

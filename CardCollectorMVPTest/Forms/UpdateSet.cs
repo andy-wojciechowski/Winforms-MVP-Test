@@ -1,10 +1,11 @@
-﻿using CardCollectorMVPTest.Presenters;
+﻿using CardCollectorMVPTest.DependencyResolution;
+using CardCollectorMVPTest.Presenters;
 using System;
 using System.Windows.Forms;
 
 namespace CardCollectorMVPTest.Forms
 {
-    public partial class UpdateSet : View
+    public partial class UpdateSet : Form
     {
         public IUpdateSetPresenter Presenter { get; set; }
         private Guid SetID { get; set; }
@@ -12,6 +13,10 @@ namespace CardCollectorMVPTest.Forms
         public UpdateSet(Guid setID) : base()
         {
             InitializeComponent();
+            using (var container = ObjectFactory.GetContainer())
+            {
+                this.Presenter = container.GetInstance<IUpdateSetPresenter>();
+            }
             Presenter.SetView(this);
             this.SetID = setID;
         }

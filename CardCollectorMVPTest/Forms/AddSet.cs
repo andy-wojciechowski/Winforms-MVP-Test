@@ -1,16 +1,21 @@
-﻿using CardCollectorMVPTest.Presenters;
+﻿using CardCollectorMVPTest.DependencyResolution;
+using CardCollectorMVPTest.Presenters;
 using System;
 using System.Windows.Forms;
 
 namespace CardCollectorMVPTest.Forms
 {
-    public partial class AddSet : View
+    public partial class AddSet : Form
     {
         public IAddSetPresenter Presenter { get; set; }
 
-        public AddSet() : base()
+        public AddSet()
         {
             InitializeComponent();
+            using (var container = ObjectFactory.GetContainer())
+            {
+                this.Presenter = container.GetInstance<IAddSetPresenter>();
+            }
             Presenter.SetView(this);
         }
 
