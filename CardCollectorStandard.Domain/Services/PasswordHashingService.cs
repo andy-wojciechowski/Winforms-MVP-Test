@@ -6,10 +6,25 @@ namespace CardCollectorStandard.Domain.Services
     public interface IPasswordHashingService
     {
         bool ValidatePassword(string password, string savedHash);
+        Tuple<string, string> CreateHash(string password);
     }
     public class PasswordHashingService : IPasswordHashingService
     {
+        public Tuple<string, string> CreateHash(string password)
+        {
+            return this.ComputeHash(password);
+        }
+
         public bool ValidatePassword(string password, string savedHash)
+        {
+            var computedHash = this.ComputeHash(password);
+
+            if (savedHash.Equals(computedHash.Item2))
+                return true;
+            return false;
+        }
+
+        private Tuple<string, string> ComputeHash(string password)
         {
             //Modeled from https://stackoverflow.com/questions/4181198/how-to-hash-a-password/10402129#10402129
             //Create the salt
@@ -25,11 +40,7 @@ namespace CardCollectorStandard.Domain.Services
             Array.Copy(salt, 0, hashBytes, 0, 16);
             Array.Copy(hash, 0, hashBytes, 16, 20);
 
-            string computedHash = Convert.ToBase64String(hashBytes);
-
-            if (savedHash.Equals(computedHash))
-                return true;
-            return false;
+            return new Tuple<string, string>(Convert.ToBase64String(salt), Convert.ToBase64String(hashBytes));
         }
     }
 }
