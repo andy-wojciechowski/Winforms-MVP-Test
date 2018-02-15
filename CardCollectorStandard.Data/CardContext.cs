@@ -9,8 +9,6 @@ namespace CardCollectorStandard.Data
 
         public DbSet<CardSet> CardSets { get; set; }
         public DbSet<Card> Cards { get; set; }
-        public DbSet<User> Users { get; set; }
-
         /// <remarks>Note this database is not located on a server and was created as a local SQL server DB. This DB will need to be recreated in order for the program to function.</remarks>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -21,10 +19,8 @@ namespace CardCollectorStandard.Data
         {
             modelBuilder.Entity<CardSet>().ToTable("CardSet");
             modelBuilder.Entity<Card>().ToTable("Card");
-            modelBuilder.Entity<User>().ToTable("User");
             modelBuilder.Entity<CardSet>().HasKey(s => s.ID);
             modelBuilder.Entity<Card>().HasKey(c => c.ID);
-            modelBuilder.Entity<User>().HasKey(u => u.ID);
         }
     }
 }

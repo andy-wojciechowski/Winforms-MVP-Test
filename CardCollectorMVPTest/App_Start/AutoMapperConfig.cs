@@ -13,7 +13,6 @@ public class AutoMapperConfig
 
             //CardCollectorStandard.Domain
             config.AddProfile<CardAutoMapperProfile>();
-            config.AddProfile<UserAutoMapperProfile>();
         });
     }
 }
