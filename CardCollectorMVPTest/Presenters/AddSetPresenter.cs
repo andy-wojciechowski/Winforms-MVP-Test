@@ -10,20 +10,20 @@ namespace CardCollectorMVPTest.Presenters
     {
         void CreateSet();
         void CancelCreateSet();
-        void SetView(AddSet View);
+        void SetView(IAddSetView View);
     }
 
     public class AddSetPresenter : IAddSetPresenter
     {        
         public ICardFacade CardFacade { get; set; }
-        private AddSet View { get; set; }
+        private IAddSetView View { get; set; }
 
         public void CancelCreateSet()
         {
             View.CloseForm();
         }
 
-        public void SetView(AddSet View)
+        public void SetView(IAddSetView View)
         {
             this.View = View;
         }

@@ -10,24 +10,23 @@ namespace CardCollectorMVPTest.Presenters
         void AddSet();
         void UpdateSet();
         void UpdateCollection();
-        void SetView(SetSelectionList view);
+        void SetView(ISetSelectionListView view);
     }
     public class SetSelectionPresenter : ISetSelectionPresenter
     {
         public ICardFacade CardFacade { get; set; }
-        private SetSelectionList View { get; set; }
+        private ISetSelectionListView View { get; set; }
 
         public void AddSet()
         {
             using (var addSetForm = new AddSet())
             {
                 addSetForm.FormClosed += (s, e) => this.GetAndFillData();
-                addSetForm.ShowDialog(View);
+                addSetForm.ShowDialog(View as SetSelectionList);
             }
         }
 
-        //HACK!
-        public void SetView(SetSelectionList view)
+        public void SetView(ISetSelectionListView view)
         {
             this.View = view;
         }
@@ -42,7 +41,7 @@ namespace CardCollectorMVPTest.Presenters
             var setID = View.GetCurrentSelectRowId();
             using (var editCardCollectionForm = new EditCardCollection(setID))
             {
-                editCardCollectionForm.ShowDialog(View);
+                editCardCollectionForm.ShowDialog(View as SetSelectionList);
             }
         }
 
@@ -51,7 +50,7 @@ namespace CardCollectorMVPTest.Presenters
             var setID = View.GetCurrentSelectRowId();
             using (var updateSetForm = new UpdateSet(setID))
             {
-                updateSetForm.ShowDialog(View);
+                updateSetForm.ShowDialog(View as SetSelectionList);
             }
         }
     }

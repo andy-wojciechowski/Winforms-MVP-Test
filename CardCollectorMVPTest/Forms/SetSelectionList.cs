@@ -7,7 +7,13 @@ using System.Windows.Forms;
 
 namespace CardCollectorMVPTest.Forms
 {
-    public partial class SetSelectionList : Form
+    public interface ISetSelectionListView
+    {
+        void SetGridDataSource(object source, IList<string> columnsToShow);
+        Guid GetCurrentSelectRowId();
+    }
+
+    public partial class SetSelectionList : Form, ISetSelectionListView
     {
         public ISetSelectionPresenter Presenter { get; set; }
         private DataGridViewRow _lastSelectedRow;

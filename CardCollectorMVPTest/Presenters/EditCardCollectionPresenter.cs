@@ -14,20 +14,20 @@ namespace CardCollectorMVPTest.Presenters
         void RemoveFromCollection();
         void Save();
         void Cancel();
-        void SetView(EditCardCollection View);
+        void SetView(IEditCardCollectionView View);
     }
 
     public class EditCardCollectionPresenter : IEditCardCollectionPresenter
     {
         public ICardFacade CardFacade { get; set; }
-        private EditCardCollection View { get; set; }
+        private IEditCardCollectionView View { get; set; }
 
         public void Cancel()
         {
             View.CloseForm();
         }
 
-        public void SetView(EditCardCollection View)
+        public void SetView(IEditCardCollectionView View)
         {
             this.View = View;
         }

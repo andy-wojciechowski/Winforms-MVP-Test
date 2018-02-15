@@ -8,7 +8,18 @@ using System.Windows.Forms;
 
 namespace CardCollectorMVPTest.Forms
 {
-    public partial class EditCardCollection : Form
+    public interface IEditCardCollectionView
+    {
+        void CloseForm();
+        void SetViewModel(EditCardCollectionViewModel viewModel);
+        void MakeCardOwned();
+        void MakeCardNotOwned();
+        IList<CardViewModel> GetNotOwnedCards();
+        IList<CardViewModel> GetOwnedCards();
+        Guid GetSetID();
+    }
+
+    public partial class EditCardCollection : Form, IEditCardCollectionView
     {
         public IEditCardCollectionPresenter Presenter { get; set; }
         private DataGridViewRow _lastOwnedRow { get; set; }

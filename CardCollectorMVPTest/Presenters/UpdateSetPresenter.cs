@@ -8,15 +8,15 @@ namespace CardCollectorMVPTest.Presenters
     {
         void UpdateSet();
         void CancelUpdate();
-        void SetView(UpdateSet View);
+        void SetView(IUpdateSetView View);
     }
 
     public class UpdateSetPresenter : IUpdateSetPresenter
     {
         public ICardFacade CardFacade { get; set; }
-        private UpdateSet View { get; set; }
+        private IUpdateSetView View { get; set; }
 
-        public void SetView(UpdateSet View)
+        public void SetView(IUpdateSetView View)
         {
             this.View = View;
         }

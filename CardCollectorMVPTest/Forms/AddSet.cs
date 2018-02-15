@@ -5,7 +5,14 @@ using System.Windows.Forms;
 
 namespace CardCollectorMVPTest.Forms
 {
-    public partial class AddSet : Form
+    public interface IAddSetView
+    {
+        string GetCurrentName();
+        string GetCurrentCards();
+        void CloseForm();
+    }
+
+    public partial class AddSet : Form, IAddSetView
     {
         public IAddSetPresenter Presenter { get; set; }
 

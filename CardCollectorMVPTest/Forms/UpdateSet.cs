@@ -5,12 +5,19 @@ using System.Windows.Forms;
 
 namespace CardCollectorMVPTest.Forms
 {
-    public partial class UpdateSet : Form
+    public interface IUpdateSetView
+    {
+        string GetCardToAdd();
+        void CloseForm();
+        Guid GetSetID();
+    }
+
+    public partial class UpdateSet : Form, IUpdateSetView
     {
         public IUpdateSetPresenter Presenter { get; set; }
         private Guid SetID { get; set; }
 
-        public UpdateSet(Guid setID) : base()
+        public UpdateSet(Guid setID)
         {
             InitializeComponent();
             using (var container = ObjectFactory.GetContainer())
