@@ -1,10 +1,9 @@
-﻿using CardCollectorMVPTest.Forms;
+﻿using AutoMapper;
+using CardCollectorMVPTest.Forms;
 using CardCollectorMVPTest.ViewModels;
 using CardCollectorStandard.Domain.Facades;
-using System;
-using System.Linq;
-using AutoMapper;
 using System.ComponentModel;
+using System.Linq;
 
 namespace CardCollectorMVPTest.Presenters
 {
@@ -18,18 +17,19 @@ namespace CardCollectorMVPTest.Presenters
         void SetView(EditCardCollection View);
     }
 
-    public class EditCardCollectionPresenter : BasePresenter<EditCardCollection>, IEditCardCollectionPresenter
+    public class EditCardCollectionPresenter : IEditCardCollectionPresenter
     {
         public ICardFacade CardFacade { get; set; }
+        private EditCardCollection View { get; set; }
 
         public void Cancel()
         {
             View.CloseForm();
         }
 
-        public new void SetView(EditCardCollection View)
+        public void SetView(EditCardCollection View)
         {
-            base.SetView(View);
+            this.View = View;
         }
 
         public void FillLists()

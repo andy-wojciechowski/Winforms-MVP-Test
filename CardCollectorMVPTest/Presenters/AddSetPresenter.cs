@@ -13,18 +13,19 @@ namespace CardCollectorMVPTest.Presenters
         void SetView(AddSet View);
     }
 
-    public class AddSetPresenter : BasePresenter<AddSet>, IAddSetPresenter
+    public class AddSetPresenter : IAddSetPresenter
     {        
         public ICardFacade CardFacade { get; set; }
+        private AddSet View { get; set; }
 
         public void CancelCreateSet()
         {
             View.CloseForm();
         }
 
-        public new void SetView(AddSet View)
+        public void SetView(AddSet View)
         {
-            base.SetView(View);
+            this.View = View;
         }
 
         public void CreateSet()

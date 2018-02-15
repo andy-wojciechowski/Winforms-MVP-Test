@@ -85,7 +85,6 @@
     </Compile>
     <Compile Include="MVPTestAutoMapperProfile.cs" />
     <Compile Include="Presenters\AddSetPresenter.cs" />
-    <Compile Include="Presenters\BasePresenter.cs" />
     <Compile Include="Presenters\EditCardCollectionPresenter.cs" />
     <Compile Include="Presenters\SetSelectionPresenter.cs" />
     <Compile Include="Presenters\UpdateSetPresenter.cs" />

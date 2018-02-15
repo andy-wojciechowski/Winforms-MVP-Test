@@ -1,7 +1,6 @@
 ﻿using CardCollectorMVPTest.Forms;
 using CardCollectorStandard.Domain.Facades;
 using System.Linq;
-using System;
 
 namespace CardCollectorMVPTest.Presenters
 {
@@ -13,9 +12,10 @@ namespace CardCollectorMVPTest.Presenters
         void UpdateCollection();
         void SetView(SetSelectionList view);
     }
-    public class SetSelectionPresenter : BasePresenter<SetSelectionList>, ISetSelectionPresenter
+    public class SetSelectionPresenter : ISetSelectionPresenter
     {
         public ICardFacade CardFacade { get; set; }
+        private SetSelectionList View { get; set; }
 
         public void AddSet()
         {
@@ -27,9 +27,9 @@ namespace CardCollectorMVPTest.Presenters
         }
 
         //HACK!
-        public new void SetView(SetSelectionList view)
+        public void SetView(SetSelectionList view)
         {
-            base.SetView(view);
+            this.View = view;
         }
 
         public void GetAndFillData()

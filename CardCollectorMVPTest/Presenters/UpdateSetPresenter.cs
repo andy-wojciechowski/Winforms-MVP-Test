@@ -1,7 +1,6 @@
 ﻿using CardCollectorMVPTest.Forms;
 using CardCollectorStandard.Domain.Dtos;
 using CardCollectorStandard.Domain.Facades;
-using System;
 
 namespace CardCollectorMVPTest.Presenters
 {
@@ -12,13 +11,14 @@ namespace CardCollectorMVPTest.Presenters
         void SetView(UpdateSet View);
     }
 
-    public class UpdateSetPresenter : BasePresenter<UpdateSet>, IUpdateSetPresenter
+    public class UpdateSetPresenter : IUpdateSetPresenter
     {
         public ICardFacade CardFacade { get; set; }
+        private UpdateSet View { get; set; }
 
-        public new void SetView(UpdateSet View)
+        public void SetView(UpdateSet View)
         {
-            base.SetView(View);
+            this.View = View;
         }
 
         public void UpdateSet()
