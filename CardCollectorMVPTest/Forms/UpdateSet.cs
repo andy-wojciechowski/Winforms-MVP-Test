@@ -31,8 +31,6 @@ namespace CardCollectorMVPTest.Forms
             Presenter.UpdateSet();
         }
 
-        #region Interaction
-
         public string GetCardToAdd()
         {
             return txtCardName.Text;
@@ -47,8 +45,5 @@ namespace CardCollectorMVPTest.Forms
         {
             return this.SetID;
         }
-
-        #endregion
-
     }
 }

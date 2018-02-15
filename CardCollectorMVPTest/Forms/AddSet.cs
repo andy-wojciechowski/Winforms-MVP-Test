@@ -19,8 +19,6 @@ namespace CardCollectorMVPTest.Forms
             Presenter.SetView(this);
         }
 
-        #region Events
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Presenter.CancelCreateSet();
@@ -30,10 +28,6 @@ namespace CardCollectorMVPTest.Forms
         {
             Presenter.CreateSet();
         }
-
-        #endregion
-
-        #region Interaction
 
         public void CloseForm()
         {
@@ -49,8 +43,6 @@ namespace CardCollectorMVPTest.Forms
         {
             return txtCards.Text;
         }
-
-        #endregion
 
     }
 }

@@ -23,18 +23,16 @@ namespace CardCollectorMVPTest.Forms
             Presenter.SetView(this);
         }
 
-        #region Control Interaction
-
         public void SetGridDataSource(object source, IList<string> columnsToShow)
         {
             IsDataBound = false;
             this.setGrid.DataSource = typeof(IList);
             this.setGrid.DataSource = source;
             IsDataBound = true;
-            if(this.setGrid.Rows.Count != 0) { this.setGrid.Rows[0].Selected = true; }
-            foreach(DataGridViewColumn column in this.setGrid.Columns)
+            if (this.setGrid.Rows.Count != 0) { this.setGrid.Rows[0].Selected = true; }
+            foreach (DataGridViewColumn column in this.setGrid.Columns)
             {
-                if(!columnsToShow.Contains(column.Name) || string.IsNullOrEmpty(column.Name))
+                if (!columnsToShow.Contains(column.Name) || string.IsNullOrEmpty(column.Name))
                 {
                     column.Visible = false;
                 }
@@ -45,10 +43,6 @@ namespace CardCollectorMVPTest.Forms
         {
             return (Guid)this.setGrid.Rows[_lastSelectedRow.Index].Cells["ID"].Value;
         }
-
-        #endregion
-
-        #region events
 
         private void SetSelectionList_Load(object sender, EventArgs e)
         {
@@ -67,7 +61,7 @@ namespace CardCollectorMVPTest.Forms
 
         private void setGrid_SelectionChanged(object sender, EventArgs e)
         {
-            if(this.setGrid.Rows.Count != 0 && IsDataBound)
+            if (this.setGrid.Rows.Count != 0 && IsDataBound)
             {
                 if (this.setGrid.SelectedRows.Count == 0)
                 {
@@ -85,6 +79,5 @@ namespace CardCollectorMVPTest.Forms
             Presenter.UpdateCollection();
         }
 
-        #endregion
     }
 }

@@ -28,8 +28,6 @@ namespace CardCollectorMVPTest.Forms
             this.SetId = setID;
         }
 
-        #region -Events-
-
         private void EditCardCollection_Load(object sender, EventArgs e)
         {
             Presenter.FillLists();
@@ -55,10 +53,6 @@ namespace CardCollectorMVPTest.Forms
             Presenter.RemoveFromCollection();
         }
 
-        #endregion
-
-        #region -Control Interaction-
-
         public void CloseForm()
         {
             this.Close();
@@ -73,8 +67,8 @@ namespace CardCollectorMVPTest.Forms
             this.cardsOwnedGrid.DataSource = this.Model.OwnedCards;
             IsDataBound = true;
 
-            if(this.cardsNotOwnedGrid.Rows.Count != 0) { this.cardsNotOwnedGrid.Rows[0].Selected = true; }
-            if(this.cardsOwnedGrid.Rows.Count != 0) { this.cardsOwnedGrid.Rows[0].Selected = true; }
+            if (this.cardsNotOwnedGrid.Rows.Count != 0) { this.cardsNotOwnedGrid.Rows[0].Selected = true; }
+            if (this.cardsOwnedGrid.Rows.Count != 0) { this.cardsOwnedGrid.Rows[0].Selected = true; }
 
             this.HideColumnsFromDataGridView(this.cardsNotOwnedGrid, new string[] { "Name" }.ToList());
             this.HideColumnsFromDataGridView(this.cardsOwnedGrid, new string[] { "Name" }.ToList());
@@ -118,9 +112,9 @@ namespace CardCollectorMVPTest.Forms
 
         private void HideColumnsFromDataGridView(DataGridView grid, IList<string> columnsToShow)
         {
-            foreach(DataGridViewColumn column in grid.Columns)
+            foreach (DataGridViewColumn column in grid.Columns)
             {
-                if(!columnsToShow.Contains(column.Name))
+                if (!columnsToShow.Contains(column.Name))
                 {
                     column.Visible = false;
                 }
@@ -131,7 +125,5 @@ namespace CardCollectorMVPTest.Forms
         {
             return this.SetId;
         }
-
-        #endregion
     }
 }
