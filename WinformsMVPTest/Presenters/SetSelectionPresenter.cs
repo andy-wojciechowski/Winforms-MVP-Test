@@ -11,9 +11,11 @@ using WinformsMVPTest.Views;
 namespace WinformsMVPTest.Presenters
 {
 	public class SetSelectionPresenter : ISetSelectionPresenter
-    {
-        public ICardFacade CardFacade { get; set; }
-        private ISetSelectionListView View { get; set; }
+	{
+		public ICardFacade CardFacade { get; set; }
+		private ISetSelectionListView View { get; set; }
+		private bool IsDataBound {get;set;}
+		private DataGridViewRow _lastSelectedRow { get; set; }
 
         public void AddSet()
         {
@@ -42,10 +44,10 @@ namespace WinformsMVPTest.Presenters
         {
 			var columnsToShow = new string[] { "Name" };
 			var cards = this.CardFacade.GetAllCardSets();
-			this.View.IsDataBound = false;
+			this.IsDataBound = false;
 			this.View.SetGrid.DataSource = typeof(IList);
 			this.View.SetGrid.DataSource = cards;
-			this.View.IsDataBound = true;
+			this.IsDataBound = true;
 			if (this.View.SetGrid.Rows.Count != 0) { this.View.SetGrid.Rows[0].Selected = true; }
 			foreach (DataGridViewColumn column in this.View.SetGrid.Columns)
 			{
@@ -58,7 +60,7 @@ namespace WinformsMVPTest.Presenters
 
         public void UpdateCollection()
         {
-            var setID = View.GetCurrentSelectRowId();
+			var setID = this.GetCurrentlySelectedRow();
 			IEditCardCollectionView editCardCollectionView = new EditCardCollection();
 			using (var container = ObjectFactory.GetContainer())
 			{
@@ -77,7 +79,7 @@ namespace WinformsMVPTest.Presenters
 
         public void UpdateSet()
         {
-            var setID = View.GetCurrentSelectRowId();
+			var setID = this.GetCurrentlySelectedRow();
 			IUpdateSetView updateSetView = new UpdateSet();
 			using (var container = ObjectFactory.GetContainer())
 			{
@@ -93,5 +95,25 @@ namespace WinformsMVPTest.Presenters
 				form.ShowDialog(View as SetSelectionList);
 			}
         }
-    }
+
+		public void UpdateLastSelectedRow()
+		{
+			if (this.View.SetGrid.Rows.Count != 0 && this.IsDataBound)
+			{
+				if (this.View.SetGrid.SelectedRows.Count == 0)
+				{
+					_lastSelectedRow.Selected = true;
+				}
+				else
+				{
+					_lastSelectedRow = this.View.SetGrid.SelectedRows[0];
+				}
+			}
+		}
+
+		private Guid GetCurrentlySelectedRow()
+		{
+			return (Guid)this.View.SetGrid.Rows[_lastSelectedRow.Index].Cells["ID"].Value;
+		}
+	}
 }

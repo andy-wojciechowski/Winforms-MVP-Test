@@ -1,12 +1,11 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using WinformsMVPTest.Interfaces.Presenters;
 
 namespace WinformsMVPTest.Interfaces.Views
 {
 	public interface ISetSelectionListView
 	{
-		bool IsDataBound { get; set; }
 		DataGridView SetGrid { get; }
-		Guid GetCurrentSelectRowId();
+		void SetPresenter(ISetSelectionPresenter presenter);
 	}
 }

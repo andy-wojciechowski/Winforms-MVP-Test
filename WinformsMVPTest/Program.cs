@@ -1,4 +1,7 @@
-﻿using WinformsMVPTest.Views;
+﻿using WinformsMVPTest.DependencyResolution;
+using WinformsMVPTest.Interfaces.Views;
+using WinformsMVPTest.Interfaces.Presenters;
+using WinformsMVPTest.Views;
 using System;
 using System.Windows.Forms;
 
@@ -16,7 +19,14 @@ namespace WinformsMVPTest
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             AutoMapperConfig.Configure();
-            Application.Run(new SetSelectionList());
+			ISetSelectionListView view = new SetSelectionList();
+			using (var container = ObjectFactory.GetContainer())
+			{
+				var presenter = container.GetInstance<ISetSelectionPresenter>();
+				presenter.SetView(view);
+				view.SetPresenter(presenter);
+			}
+			Application.Run(view as SetSelectionList);
         }
     }
 }

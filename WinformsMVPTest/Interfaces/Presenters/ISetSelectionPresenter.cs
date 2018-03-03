@@ -9,5 +9,6 @@ namespace WinformsMVPTest.Interfaces.Presenters
 		void UpdateSet();
 		void UpdateCollection();
 		void SetView(ISetSelectionListView view);
+		void UpdateLastSelectedRow();
 	}
 }
