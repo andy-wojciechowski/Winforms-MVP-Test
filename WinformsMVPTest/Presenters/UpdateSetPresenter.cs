@@ -1,4 +1,5 @@
-﻿using WinformsMVPTest.Interfaces.Presenters;
+﻿using System;
+using WinformsMVPTest.Interfaces.Presenters;
 using WinformsMVPTest.Interfaces.Views;
 using WinformsMVPTest.Domain.Dtos;
 using WinformsMVPTest.Domain.Interfaces.Facades;
@@ -9,6 +10,7 @@ namespace WinformsMVPTest.Presenters
     {
         public ICardFacade CardFacade { get; set; }
         private IUpdateSetView View { get; set; }
+		private Guid SetID { get; set; }
 
         public void SetView(IUpdateSetView View)
         {
@@ -21,7 +23,7 @@ namespace WinformsMVPTest.Presenters
 
             this.CardFacade.UpdateSet(new UpdateSetRequestDto
             {
-                SetID = View.GetSetID(),
+                SetID = this.SetID,
                 CardToAdd = cardToAdd
             });
             View.CloseForm();
@@ -31,5 +33,10 @@ namespace WinformsMVPTest.Presenters
         {
             View.CloseForm();
         }
+
+		public void SetSetID(Guid setID)
+		{
+			this.SetID = setID;
+		}
     }
 }

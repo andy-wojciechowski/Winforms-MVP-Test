@@ -1,25 +1,36 @@
-﻿using WinformsMVPTest.Views;
+﻿using System;
+using System.Collections;
+using System.Linq;
+using System.Windows.Forms;
+using WinformsMVPTest.DependencyResolution;
+using WinformsMVPTest.Domain.Interfaces.Facades;
 using WinformsMVPTest.Interfaces.Presenters;
 using WinformsMVPTest.Interfaces.Views;
-using WinformsMVPTest.Domain.Interfaces.Facades;
-using System.Linq;
-using System.Collections;
-using System.Windows.Forms;
+using WinformsMVPTest.Views;
 
 namespace WinformsMVPTest.Presenters
 {
-    public class SetSelectionPresenter : ISetSelectionPresenter
+	public class SetSelectionPresenter : ISetSelectionPresenter
     {
         public ICardFacade CardFacade { get; set; }
         private ISetSelectionListView View { get; set; }
 
         public void AddSet()
         {
-            using (var addSetForm = new AddSet())
-            {
-                addSetForm.FormClosed += (s, e) => this.GetAndFillData();
-                addSetForm.ShowDialog(View as SetSelectionList);
-            }
+			IAddSetView view = new AddSet();
+			using (var container = ObjectFactory.GetContainer())
+			{
+				var presenter = container.GetInstance<IAddSetPresenter>();
+				presenter.SetView(view);
+				view.SetPresenter(presenter);
+			}
+
+			var form = (Form)view;
+			using (form)
+			{
+				form.FormClosed += (s, e) => this.GetAndFillData();
+				form.ShowDialog(View as SetSelectionList);
+			}
         }
 
         public void SetView(ISetSelectionListView view)
@@ -48,19 +59,39 @@ namespace WinformsMVPTest.Presenters
         public void UpdateCollection()
         {
             var setID = View.GetCurrentSelectRowId();
-            using (var editCardCollectionForm = new EditCardCollection(setID))
-            {
-                editCardCollectionForm.ShowDialog(View as SetSelectionList);
-            }
+			IEditCardCollectionView editCardCollectionView = new EditCardCollection();
+			using (var container = ObjectFactory.GetContainer())
+			{
+				var presenter = container.GetInstance<IEditCardCollectionPresenter>();
+				presenter.SetView(editCardCollectionView);
+				presenter.SetSetID(setID);
+				editCardCollectionView.SetPresenter(presenter);
+			}
+
+			var form = (Form)editCardCollectionView;
+			using (form)
+			{
+				form.ShowDialog(View as SetSelectionList);
+			}
         }
 
         public void UpdateSet()
         {
             var setID = View.GetCurrentSelectRowId();
-            using (var updateSetForm = new UpdateSet(setID))
-            {
-                updateSetForm.ShowDialog(View as SetSelectionList);
-            }
+			IUpdateSetView updateSetView = new UpdateSet();
+			using (var container = ObjectFactory.GetContainer())
+			{
+				var presenter = container.GetInstance<IUpdateSetPresenter>();
+				presenter.SetView(updateSetView);
+				presenter.SetSetID(setID);
+				updateSetView.SetPresenter(presenter);
+			}
+
+			var form = (Form)updateSetView;
+			using (form)
+			{
+				form.ShowDialog(View as SetSelectionList);
+			}
         }
     }
 }

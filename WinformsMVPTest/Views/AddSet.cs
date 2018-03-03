@@ -1,12 +1,11 @@
-﻿using WinformsMVPTest.DependencyResolution;
+﻿using System;
+using System.Windows.Forms;
 using WinformsMVPTest.Interfaces.Presenters;
 using WinformsMVPTest.Interfaces.Views;
-using System;
-using System.Windows.Forms;
 
 namespace WinformsMVPTest.Views
 {
-    public partial class AddSet : Form, IAddSetView
+	public partial class AddSet : Form, IAddSetView
     {
         public IAddSetPresenter Presenter { get; set; }
 
@@ -17,11 +16,6 @@ namespace WinformsMVPTest.Views
 		public AddSet()
         {
             InitializeComponent();
-            using (var container = ObjectFactory.GetContainer())
-            {
-                this.Presenter = container.GetInstance<IAddSetPresenter>();
-            }
-            Presenter.SetView(this);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -38,5 +32,10 @@ namespace WinformsMVPTest.Views
         {
             this.Close();
         }
-    }
+
+		public void SetPresenter(IAddSetPresenter presenter)
+		{
+			this.Presenter = presenter;
+		}
+	}
 }

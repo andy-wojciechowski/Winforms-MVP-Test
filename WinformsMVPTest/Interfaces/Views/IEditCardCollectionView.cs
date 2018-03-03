@@ -1,5 +1,5 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using WinformsMVPTest.Interfaces.Presenters;
 
 namespace WinformsMVPTest.Interfaces.Views
 {
@@ -8,6 +8,6 @@ namespace WinformsMVPTest.Interfaces.Views
 		DataGridView CardsNotOwnedGrid { get; }
 		DataGridView CardsOwnedGrid { get; }
 		void CloseForm();
-		Guid GetSetID();
+		void SetPresenter(IEditCardCollectionPresenter presenter);
 	}
 }

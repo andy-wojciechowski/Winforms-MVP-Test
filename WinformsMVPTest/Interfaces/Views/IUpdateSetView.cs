@@ -1,5 +1,5 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using WinformsMVPTest.Interfaces.Presenters;
 
 namespace WinformsMVPTest.Interfaces.Views
 {
@@ -7,6 +7,6 @@ namespace WinformsMVPTest.Interfaces.Views
 	{
 		TextBox NameTextBox { get; }
 		void CloseForm();
-		Guid GetSetID();
+		void SetPresenter(IUpdateSetPresenter presenter);
 	}
 }

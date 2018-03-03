@@ -9,19 +9,11 @@ namespace WinformsMVPTest.Views
 	public partial class UpdateSet : Form, IUpdateSetView
     {
         public IUpdateSetPresenter Presenter { get; set; }
-        private Guid SetID { get; set; }
-
 		public TextBox NameTextBox => this.txtCardName;
 
-		public UpdateSet(Guid setID)
+		public UpdateSet()
         {
             InitializeComponent();
-            using (var container = ObjectFactory.GetContainer())
-            {
-                this.Presenter = container.GetInstance<IUpdateSetPresenter>();
-            }
-            Presenter.SetView(this);
-            this.SetID = setID;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -39,9 +31,9 @@ namespace WinformsMVPTest.Views
             this.Close();
         }
 
-        public Guid GetSetID()
-        {
-            return this.SetID;
-        }
-    }
+		public void SetPresenter(IUpdateSetPresenter presenter)
+		{
+			this.Presenter = presenter;
+		}
+	}
 }

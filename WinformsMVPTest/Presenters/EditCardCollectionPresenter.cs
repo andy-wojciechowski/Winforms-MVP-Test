@@ -3,6 +3,7 @@ using WinformsMVPTest.Interfaces.Presenters;
 using WinformsMVPTest.Interfaces.Views;
 using WinformsMVPTest.ViewModels;
 using WinformsMVPTest.Domain.Interfaces.Facades;
+using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
@@ -11,11 +12,12 @@ using System.Collections.Generic;
 namespace WinformsMVPTest.Presenters
 {
 	public class EditCardCollectionPresenter : IEditCardCollectionPresenter
-    {
-        public ICardFacade CardFacade { get; set; }
-        private IEditCardCollectionView View { get; set; }
+	{
+		public ICardFacade CardFacade { get; set; }
+		private IEditCardCollectionView View { get; set; }
 		private BindingList<CardViewModel> NotOwnedCards { get; set; }
 		private BindingList<CardViewModel> OwnedCards { get; set; }
+		private Guid SetID { get; set; }
 
         public void Cancel()
         {
@@ -29,7 +31,7 @@ namespace WinformsMVPTest.Presenters
 
         public void FillLists()
         {
-            var cards = this.CardFacade.GetCardsFromSet(View.GetSetID());
+            var cards = this.CardFacade.GetCardsFromSet(this.SetID);
 			this.NotOwnedCards = new BindingList<CardViewModel>(cards.Where(x => x.IsOwned == false).Select(x => Mapper.Map<CardViewModel>(x)).ToList());
 			this.OwnedCards = new BindingList<CardViewModel>(cards.Where(x => x.IsOwned == true).Select(x => Mapper.Map<CardViewModel>(x)).ToList());
 
@@ -93,6 +95,11 @@ namespace WinformsMVPTest.Presenters
 					column.Visible = false;
 				}
 			}
+		}
+
+		public void SetSetID(Guid setID)
+		{
+			this.SetID = setID;
 		}
 	}
 }

@@ -1,31 +1,20 @@
 ﻿using System;
 using System.Windows.Forms;
-using WinformsMVPTest.DependencyResolution;
 using WinformsMVPTest.Interfaces.Presenters;
 using WinformsMVPTest.Interfaces.Views;
-using WinformsMVPTest.ViewModels;
 
 namespace WinformsMVPTest.Views
 {
 	public partial class EditCardCollection : Form, IEditCardCollectionView
     {
         public IEditCardCollectionPresenter Presenter { get; set; }
-        private EditCardCollectionViewModel Model { get; set; }
-        private Guid SetId { get; set; }
 
 		public DataGridView CardsNotOwnedGrid => this.cardsNotOwnedGrid;
-
 		public DataGridView CardsOwnedGrid => this.cardsOwnedGrid;
 
-		public EditCardCollection(Guid setID)
+		public EditCardCollection()
         {
             InitializeComponent();
-            using (var container = ObjectFactory.GetContainer())
-            {
-                this.Presenter = container.GetInstance<IEditCardCollectionPresenter>();
-            }
-            Presenter.SetView(this);
-            this.SetId = setID;
         }
 
         private void EditCardCollection_Load(object sender, EventArgs e)
@@ -58,9 +47,9 @@ namespace WinformsMVPTest.Views
             this.Close();
         }
 
-        public Guid GetSetID()
-        {
-            return this.SetId;
-        }
-    }
+		public void SetPresenter(IEditCardCollectionPresenter presenter)
+		{
+			this.Presenter = presenter;
+		}
+	}
 }
