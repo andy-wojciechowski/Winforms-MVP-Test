@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace WinformsMVPTest.ViewModels
 {
-    public class EditCardCollectionViewModel : BaseViewModel
+    public class EditCardCollectionViewModel
     {
         public BindingList<CardViewModel> NotOwnedCards { get; set; }
         public BindingList<CardViewModel> OwnedCards { get; set; }

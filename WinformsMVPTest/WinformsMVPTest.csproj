@@ -95,7 +95,6 @@
     <Compile Include="Presenters\UpdateSetPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\EditCardCollectionViewModel.cs" />
     <EmbeddedResource Include="Forms\AddSet.resx">
       <DependentUpon>AddSet.cs</DependentUpon>
