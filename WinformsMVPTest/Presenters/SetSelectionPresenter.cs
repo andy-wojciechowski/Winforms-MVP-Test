@@ -1,4 +1,4 @@
-﻿using WinformsMVPTest.Forms;
+﻿using WinformsMVPTest.Views;
 using WinformsMVPTest.Interfaces.Presenters;
 using WinformsMVPTest.Interfaces.Views;
 using WinformsMVPTest.Domain.Interfaces.Facades;

@@ -4,7 +4,7 @@ using WinformsMVPTest.Interfaces.Views;
 using System;
 using System.Windows.Forms;
 
-namespace WinformsMVPTest.Forms
+namespace WinformsMVPTest.Views
 {
     public partial class AddSet : Form, IAddSetView
     {

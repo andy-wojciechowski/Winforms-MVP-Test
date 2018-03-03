@@ -1,4 +1,4 @@
-﻿namespace WinformsMVPTest.Forms
+﻿namespace WinformsMVPTest.Views
 {
     partial class UpdateSet
     {

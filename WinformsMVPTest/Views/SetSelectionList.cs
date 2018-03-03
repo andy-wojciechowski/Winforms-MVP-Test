@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace WinformsMVPTest.Forms
+namespace WinformsMVPTest.Views
 {
     public partial class SetSelectionList : Form, ISetSelectionListView
     {

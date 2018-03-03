@@ -1,4 +1,4 @@
-﻿using WinformsMVPTest.Forms;
+﻿using WinformsMVPTest.Views;
 using System;
 using System.Windows.Forms;
 
