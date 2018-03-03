@@ -50,7 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\AutoMapperConfig.cs" />
+    <Compile Include="AutoMapperConfig.cs" />
     <Compile Include="DependencyResolution\ObjectFactory.cs" />
     <Compile Include="Forms\AddSet.cs">
       <SubType>Form</SubType>
