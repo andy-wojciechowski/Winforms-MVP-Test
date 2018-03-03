@@ -1,20 +1,12 @@
-﻿using System;
+﻿using CardCollectorStandard.Data.Entities;
+using CardCollectorStandard.Data.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using CardCollectorStandard.Data.Entities;
-using Microsoft.EntityFrameworkCore;
 
 namespace CardCollectorStandard.Data
 {
-    public interface ICardRepository
-    {
-        IList<Card> GetCardsFromSet(Guid setId);
-        IList<CardSet> GetAllCardSets();
-        void CreateSet(string SetName, IList<string> cardsToAdd);
-        void UpdateSet(Guid setId, string cardToAdd);
-        void AddCardToCollection(string cardName);
-        void RemoveCardFromCollection(string cardName);
-    }
     public class CardRepository : ICardRepository
     {
         private CardContext DataContext { get; set; }

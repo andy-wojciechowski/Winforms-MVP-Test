@@ -1,6 +1,6 @@
 ﻿using CardCollectorMVPTest.Forms;
 using CardCollectorStandard.Domain.Dtos;
-using CardCollectorStandard.Domain.Facades;
+using CardCollectorStandard.Domain.Interfaces.Facades;
 
 namespace CardCollectorMVPTest.Presenters
 {

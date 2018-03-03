@@ -1,21 +1,13 @@
-﻿using System;
+﻿using AutoMapper;
+using CardCollectorStandard.Domain.Dtos;
+using CardCollectorStandard.Domain.Interfaces.Facades;
+using CardCollectorStandard.Domain.Interfaces.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using CardCollectorStandard.Domain.Dtos;
-using CardCollectorStandard.Domain.Services;
-using AutoMapper;
 
 namespace CardCollectorStandard.Domain.Facades
 {
-    public interface ICardFacade
-    {
-        void AddCardToCollection(string cardToAdd);
-        void RemoveCardFromCollection(string cardToAdd);
-        void CreateSet(CreateSetRequestDto request);
-        void UpdateSet(UpdateSetRequestDto request);
-        IList<SetResponseDto> GetAllCardSets();
-        IList<CardResponseDto> GetCardsFromSet(Guid setID);
-    }
     public class CardFacade : ICardFacade
     {
         public ICardService CardService { get; set; }

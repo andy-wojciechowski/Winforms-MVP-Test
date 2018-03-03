@@ -1,5 +1,5 @@
 ﻿using CardCollectorMVPTest.Forms;
-using CardCollectorStandard.Domain.Facades;
+using CardCollectorStandard.Domain.Interfaces.Facades;
 using System.Linq;
 
 namespace CardCollectorMVPTest.Presenters

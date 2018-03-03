@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using CardCollectorMVPTest.Forms;
 using CardCollectorMVPTest.ViewModels;
-using CardCollectorStandard.Domain.Facades;
+using CardCollectorStandard.Domain.Interfaces.Facades;
 using System.ComponentModel;
 using System.Linq;
 

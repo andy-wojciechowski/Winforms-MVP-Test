@@ -1,21 +1,13 @@
-﻿using System;
+﻿using AutoMapper;
+using CardCollectorStandard.Data.Interfaces;
+using CardCollectorStandard.Domain.Interfaces.Services;
+using CardCollectorStandard.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using CardCollectorStandard.Data;
-using CardCollectorStandard.Domain.Models;
-using AutoMapper;
 
 namespace CardCollectorStandard.Domain.Services
 {
-    public interface ICardService
-    {
-        void AddCardToCollection(string cardToAdd);
-        void RemoveCardFromCollection(string cardToRemove);
-        void CreateSet(string setName, IList<string> cardsToAdd);
-        IList<CardSet> GetAllCardSets();
-        IList<Card> GetCardsFromSet(Guid setID);
-        void UpdateSet(Guid setID, string cardToAdd);
-    }
     public class CardService : ICardService
     {
         public ICardRepository CardRepository { get; set; }
