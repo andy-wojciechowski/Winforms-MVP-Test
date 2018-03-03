@@ -1,8 +1,7 @@
-﻿using WinformsMVPTest.DependencyResolution;
+﻿using System;
+using System.Windows.Forms;
 using WinformsMVPTest.Interfaces.Presenters;
 using WinformsMVPTest.Interfaces.Views;
-using System;
-using System.Windows.Forms;
 
 namespace WinformsMVPTest.Views
 {
