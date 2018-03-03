@@ -22,6 +22,7 @@ namespace CardCollectorStandard.Data
         public CardRepository()
         {
             this.DataContext = new CardContext(new DbContextOptions<CardContext>());
+            this.DataContext.Database.EnsureCreated();
         }
 
         public void AddCardToCollection(string cardName)
