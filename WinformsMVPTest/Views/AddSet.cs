@@ -10,7 +10,11 @@ namespace WinformsMVPTest.Views
     {
         public IAddSetPresenter Presenter { get; set; }
 
-        public AddSet()
+		public TextBox NameTextBox => this.txtName;
+
+		public TextBox CardsTextBox => this.txtCards;
+
+		public AddSet()
         {
             InitializeComponent();
             using (var container = ObjectFactory.GetContainer())
@@ -34,16 +38,5 @@ namespace WinformsMVPTest.Views
         {
             this.Close();
         }
-
-        public string GetCurrentName()
-        {
-            return txtName.Text;
-        }
-
-        public string GetCurrentCards()
-        {
-            return txtCards.Text;
-        }
-
     }
 }

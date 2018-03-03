@@ -1,9 +1,11 @@
-﻿namespace WinformsMVPTest.Interfaces.Views
+﻿using System.Windows.Forms;
+
+namespace WinformsMVPTest.Interfaces.Views
 {
     public interface IAddSetView
     {
-        string GetCurrentName();
-        string GetCurrentCards();
+		TextBox NameTextBox { get; }
+		TextBox CardsTextBox { get; }
         void CloseForm();
     }
 }

@@ -24,11 +24,10 @@ namespace WinformsMVPTest.Presenters
 
         public void CreateSet()
         {
-            var setName = View.GetCurrentName();
-            var cards = View.GetCurrentCards().Split(new string[] { Environment.NewLine, "\r\n", "\n" }, StringSplitOptions.None).ToList();
+            var cards = this.View.CardsTextBox.Text.Split(new string[] { Environment.NewLine, "\r\n", "\n" }, StringSplitOptions.None).ToList();
             this.CardFacade.CreateSet(new CreateSetRequestDto
             {
-                SetName = setName,
+                SetName = this.View.NameTextBox.Text,
                 CardsToAdd = cards
             });
             View.CloseForm();

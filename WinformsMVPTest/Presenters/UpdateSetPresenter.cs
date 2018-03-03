@@ -17,7 +17,7 @@ namespace WinformsMVPTest.Presenters
 
         public void UpdateSet()
         {
-            var cardToAdd = View.GetCardToAdd();
+			var cardToAdd = this.View.NameTextBox.Text;
 
             this.CardFacade.UpdateSet(new UpdateSetRequestDto
             {

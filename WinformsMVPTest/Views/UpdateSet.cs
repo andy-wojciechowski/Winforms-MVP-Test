@@ -11,7 +11,9 @@ namespace WinformsMVPTest.Views
         public IUpdateSetPresenter Presenter { get; set; }
         private Guid SetID { get; set; }
 
-        public UpdateSet(Guid setID)
+		public TextBox NameTextBox => this.txtCardName;
+
+		public UpdateSet(Guid setID)
         {
             InitializeComponent();
             using (var container = ObjectFactory.GetContainer())
@@ -30,11 +32,6 @@ namespace WinformsMVPTest.Views
         private void btnOK_Click(object sender, EventArgs e)
         {
             Presenter.UpdateSet();
-        }
-
-        public string GetCardToAdd()
-        {
-            return txtCardName.Text;
         }
 
         public void CloseForm()

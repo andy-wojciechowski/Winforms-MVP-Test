@@ -1,17 +1,13 @@
-﻿using WinformsMVPTest.ViewModels;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using System.Windows.Forms;
 
 namespace WinformsMVPTest.Interfaces.Views
 {
 	public interface IEditCardCollectionView
 	{
+		DataGridView CardsNotOwnedGrid { get; }
+		DataGridView CardsOwnedGrid { get; }
 		void CloseForm();
-		void SetViewModel(EditCardCollectionViewModel viewModel);
-		void MakeCardOwned();
-		void MakeCardNotOwned();
-		IList<CardViewModel> GetNotOwnedCards();
-		IList<CardViewModel> GetOwnedCards();
 		Guid GetSetID();
 	}
 }

@@ -3,6 +3,8 @@ using WinformsMVPTest.Interfaces.Presenters;
 using WinformsMVPTest.Interfaces.Views;
 using WinformsMVPTest.Domain.Interfaces.Facades;
 using System.Linq;
+using System.Collections;
+using System.Windows.Forms;
 
 namespace WinformsMVPTest.Presenters
 {
@@ -27,8 +29,21 @@ namespace WinformsMVPTest.Presenters
 
         public void GetAndFillData()
         {
-            this.View.SetGridDataSource(this.CardFacade.GetAllCardSets(), new string[] { "Name" }.ToList());
-        }
+			var columnsToShow = new string[] { "Name" };
+			var cards = this.CardFacade.GetAllCardSets();
+			this.View.IsDataBound = false;
+			this.View.SetGrid.DataSource = typeof(IList);
+			this.View.SetGrid.DataSource = cards;
+			this.View.IsDataBound = true;
+			if (this.View.SetGrid.Rows.Count != 0) { this.View.SetGrid.Rows[0].Selected = true; }
+			foreach (DataGridViewColumn column in this.View.SetGrid.Columns)
+			{
+				if (!columnsToShow.Contains(column.Name) || string.IsNullOrEmpty(column.Name))
+				{
+					column.Visible = false;
+				}
+			}
+		}
 
         public void UpdateCollection()
         {

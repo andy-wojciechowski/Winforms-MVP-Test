@@ -1,18 +1,19 @@
-﻿using WinformsMVPTest.DependencyResolution;
+﻿using System;
+using System.Windows.Forms;
+using WinformsMVPTest.DependencyResolution;
 using WinformsMVPTest.Interfaces.Presenters;
 using WinformsMVPTest.Interfaces.Views;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace WinformsMVPTest.Views
 {
-    public partial class SetSelectionList : Form, ISetSelectionListView
+	public partial class SetSelectionList : Form, ISetSelectionListView
     {
         public ISetSelectionPresenter Presenter { get; set; }
-        private DataGridViewRow _lastSelectedRow;
-        private bool IsDataBound;
+		public bool IsDataBound { get; set; }
+
+		public DataGridView SetGrid => this.setGrid;
+
+		private DataGridViewRow _lastSelectedRow;
 
         public SetSelectionList()
         {
@@ -22,22 +23,6 @@ namespace WinformsMVPTest.Views
                 this.Presenter = container.GetInstance<ISetSelectionPresenter>();
             }
             Presenter.SetView(this);
-        }
-
-        public void SetGridDataSource(object source, IList<string> columnsToShow)
-        {
-            IsDataBound = false;
-            this.setGrid.DataSource = typeof(IList);
-            this.setGrid.DataSource = source;
-            IsDataBound = true;
-            if (this.setGrid.Rows.Count != 0) { this.setGrid.Rows[0].Selected = true; }
-            foreach (DataGridViewColumn column in this.setGrid.Columns)
-            {
-                if (!columnsToShow.Contains(column.Name) || string.IsNullOrEmpty(column.Name))
-                {
-                    column.Visible = false;
-                }
-            }
         }
 
         public Guid GetCurrentSelectRowId()

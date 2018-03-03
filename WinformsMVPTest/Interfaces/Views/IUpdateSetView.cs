@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace WinformsMVPTest.Interfaces.Views
 {
 	public interface IUpdateSetView
 	{
-		string GetCardToAdd();
+		TextBox NameTextBox { get; }
 		void CloseForm();
 		Guid GetSetID();
 	}
