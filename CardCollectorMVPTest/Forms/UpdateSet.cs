@@ -1,18 +1,12 @@
 ﻿using CardCollectorMVPTest.DependencyResolution;
-using CardCollectorMVPTest.Presenters;
+using CardCollectorMVPTest.Interfaces.Presenters;
+using CardCollectorMVPTest.Interfaces.Views;
 using System;
 using System.Windows.Forms;
 
 namespace CardCollectorMVPTest.Forms
 {
-    public interface IUpdateSetView
-    {
-        string GetCardToAdd();
-        void CloseForm();
-        Guid GetSetID();
-    }
-
-    public partial class UpdateSet : Form, IUpdateSetView
+	public partial class UpdateSet : Form, IUpdateSetView
     {
         public IUpdateSetPresenter Presenter { get; set; }
         private Guid SetID { get; set; }

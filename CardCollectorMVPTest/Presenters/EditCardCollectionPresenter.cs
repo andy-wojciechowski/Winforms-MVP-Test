@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using CardCollectorMVPTest.Forms;
+using CardCollectorMVPTest.Interfaces.Presenters;
+using CardCollectorMVPTest.Interfaces.Views;
 using CardCollectorMVPTest.ViewModels;
 using CardCollectorStandard.Domain.Interfaces.Facades;
 using System.ComponentModel;
@@ -7,17 +8,7 @@ using System.Linq;
 
 namespace CardCollectorMVPTest.Presenters
 {
-    public interface IEditCardCollectionPresenter
-    {
-        void FillLists();
-        void AddToCollection();
-        void RemoveFromCollection();
-        void Save();
-        void Cancel();
-        void SetView(IEditCardCollectionView View);
-    }
-
-    public class EditCardCollectionPresenter : IEditCardCollectionPresenter
+	public class EditCardCollectionPresenter : IEditCardCollectionPresenter
     {
         public ICardFacade CardFacade { get; set; }
         private IEditCardCollectionView View { get; set; }

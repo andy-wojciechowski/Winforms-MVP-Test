@@ -1,5 +1,6 @@
 ﻿using CardCollectorMVPTest.DependencyResolution;
-using CardCollectorMVPTest.Presenters;
+using CardCollectorMVPTest.Interfaces.Presenters;
+using CardCollectorMVPTest.Interfaces.Views;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,12 +8,6 @@ using System.Windows.Forms;
 
 namespace CardCollectorMVPTest.Forms
 {
-    public interface ISetSelectionListView
-    {
-        void SetGridDataSource(object source, IList<string> columnsToShow);
-        Guid GetCurrentSelectRowId();
-    }
-
     public partial class SetSelectionList : Form, ISetSelectionListView
     {
         public ISetSelectionPresenter Presenter { get; set; }

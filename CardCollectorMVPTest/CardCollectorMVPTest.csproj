@@ -80,6 +80,14 @@
       <DependentUpon>UpdateSet.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Interfaces\Presenters\IAddSetPresenter.cs" />
+    <Compile Include="Interfaces\Presenters\IEditCardCollectionPresenter.cs" />
+    <Compile Include="Interfaces\Presenters\ISetSelectionPresenter.cs" />
+    <Compile Include="Interfaces\Presenters\IUpdateSetPresenter.cs" />
+    <Compile Include="Interfaces\Views\IAddSetView.cs" />
+    <Compile Include="Interfaces\Views\IEditCardCollectionView.cs" />
+    <Compile Include="Interfaces\Views\ISetSelectionListView.cs" />
+    <Compile Include="Interfaces\Views\IUpdateSetView.cs" />
     <Compile Include="MVPTestAutoMapperProfile.cs" />
     <Compile Include="Presenters\AddSetPresenter.cs" />
     <Compile Include="Presenters\EditCardCollectionPresenter.cs" />

@@ -1,4 +1,5 @@
-﻿using CardCollectorMVPTest.Forms;
+﻿using CardCollectorMVPTest.Interfaces.Presenters;
+using CardCollectorMVPTest.Interfaces.Views;
 using CardCollectorStandard.Domain.Dtos;
 using CardCollectorStandard.Domain.Interfaces.Facades;
 using System;
@@ -6,13 +7,6 @@ using System.Linq;
 
 namespace CardCollectorMVPTest.Presenters
 {
-    public interface IAddSetPresenter
-    {
-        void CreateSet();
-        void CancelCreateSet();
-        void SetView(IAddSetView View);
-    }
-
     public class AddSetPresenter : IAddSetPresenter
     {        
         public ICardFacade CardFacade { get; set; }

@@ -1,17 +1,11 @@
 ﻿using CardCollectorMVPTest.Forms;
+using CardCollectorMVPTest.Interfaces.Presenters;
+using CardCollectorMVPTest.Interfaces.Views;
 using CardCollectorStandard.Domain.Interfaces.Facades;
 using System.Linq;
 
 namespace CardCollectorMVPTest.Presenters
 {
-    public interface ISetSelectionPresenter
-    {
-        void GetAndFillData();
-        void AddSet();
-        void UpdateSet();
-        void UpdateCollection();
-        void SetView(ISetSelectionListView view);
-    }
     public class SetSelectionPresenter : ISetSelectionPresenter
     {
         public ICardFacade CardFacade { get; set; }

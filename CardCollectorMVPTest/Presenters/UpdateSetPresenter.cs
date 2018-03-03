@@ -1,17 +1,11 @@
-﻿using CardCollectorMVPTest.Forms;
+﻿using CardCollectorMVPTest.Interfaces.Presenters;
+using CardCollectorMVPTest.Interfaces.Views;
 using CardCollectorStandard.Domain.Dtos;
 using CardCollectorStandard.Domain.Interfaces.Facades;
 
 namespace CardCollectorMVPTest.Presenters
 {
-    public interface IUpdateSetPresenter
-    {
-        void UpdateSet();
-        void CancelUpdate();
-        void SetView(IUpdateSetView View);
-    }
-
-    public class UpdateSetPresenter : IUpdateSetPresenter
+	public class UpdateSetPresenter : IUpdateSetPresenter
     {
         public ICardFacade CardFacade { get; set; }
         private IUpdateSetView View { get; set; }
