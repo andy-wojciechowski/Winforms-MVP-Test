@@ -107,5 +107,14 @@ namespace WinformsMVPTest.Presenters
 		{
 			this.SetID = setID;
 		}
+
+		public void SelectEntireRow(DataGridView grid)
+		{
+			if(grid.SelectedCells.Cast<DataGridViewCell>().Any())
+			{
+				var cell = grid.SelectedCells[0];
+				cell.OwningRow.Selected = true;
+			}
+		}
 	}
 }

@@ -51,5 +51,15 @@ namespace WinformsMVPTest.Views
 		{
 			this.Presenter = presenter;
 		}
+
+		private void cardsNotOwnedGrid_SelectionChanged(object sender, EventArgs e)
+		{
+			this.Presenter.SelectEntireRow(this.cardsNotOwnedGrid);
+		}
+
+		private void cardsOwnedGrid_SelectionChanged(object sender, EventArgs e)
+		{
+			this.Presenter.SelectEntireRow(this.cardsOwnedGrid);
+		}
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using WinformsMVPTest.Interfaces.Views;
 using System;
+using System.Windows.Forms;
 
 namespace WinformsMVPTest.Interfaces.Presenters
 {
@@ -12,5 +13,6 @@ namespace WinformsMVPTest.Interfaces.Presenters
 		void Cancel();
 		void SetView(IEditCardCollectionView View);
 		void SetSetID(Guid setID);
+		void SelectEntireRow(DataGridView grid);
 	}
 }
