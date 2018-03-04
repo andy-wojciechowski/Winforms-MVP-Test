@@ -1,11 +1,9 @@
 ﻿using StructureMap;
 using System.Reflection;
-using WinformsMVPTest.Data.Interfaces;
-using WinformsMVPTest.Data;
 
 namespace WinformsMVPTest.DependencyResolution
 {
-    public class ObjectFactory
+	public class ObjectFactory
     {
         public static IContainer GetContainer()
         {
@@ -21,8 +19,6 @@ namespace WinformsMVPTest.DependencyResolution
                 scan.Assembly("WinformsMVPTest.Data");
                 scan.WithDefaultConventions();
             });
-
-			e.For<ICardRepository>().Use<CardRepository>();
 
             e.Policies.SetAllProperties(x =>
             {
