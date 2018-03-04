@@ -62,28 +62,34 @@ namespace WinformsMVPTest.Presenters
 
         public void AddToCollection()
         {
-			var row = this.View.CardsNotOwnedGrid.SelectedRows[0];
-			var item = this.NotOwnedCards.Single(x => x.Name == (string)row.Cells["Name"].Value);
-			this.NotOwnedCards.Remove(item);
-			this.OwnedCards.Add(new CardViewModel
+			if(this.View.CardsNotOwnedGrid.SelectedRows.Cast<DataGridViewRow>().Any())
 			{
-				SetID = item.SetID,
-				Name = item.Name,
-				IsOwned = true
-			});
+				var row = this.View.CardsNotOwnedGrid.SelectedRows[0];
+				var item = this.NotOwnedCards.Single(x => x.Name == (string)row.Cells["Name"].Value);
+				this.NotOwnedCards.Remove(item);
+				this.OwnedCards.Add(new CardViewModel
+				{
+					SetID = item.SetID,
+					Name = item.Name,
+					IsOwned = true
+				});
+			}
 		}
 
         public void RemoveFromCollection()
         {
-			var row = this.View.CardsOwnedGrid.SelectedRows[0];
-			var item = this.OwnedCards.Single(x => x.Name == (string)row.Cells["Name"].Value);
-			this.OwnedCards.Remove(item);
-			this.NotOwnedCards.Add(new CardViewModel
+			if(this.View.CardsOwnedGrid.SelectedRows.Cast<DataGridViewRow>().Any())
 			{
-				SetID = item.SetID,
-				Name = item.Name,
-				IsOwned = false
-			});
+				var row = this.View.CardsOwnedGrid.SelectedRows[0];
+				var item = this.OwnedCards.Single(x => x.Name == (string)row.Cells["Name"].Value);
+				this.OwnedCards.Remove(item);
+				this.NotOwnedCards.Add(new CardViewModel
+				{
+					SetID = item.SetID,
+					Name = item.Name,
+					IsOwned = false
+				});
+			}
 		}
 
 		private void HideColumnsFromDataGridView(DataGridView grid, IList<string> columnsToShow)
