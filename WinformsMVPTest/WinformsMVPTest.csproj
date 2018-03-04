@@ -94,7 +94,7 @@
     <Compile Include="Presenters\UpdateSetPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\EditCardCollectionViewModel.cs" />
+    <Compile Include="ViewModels\CardViewModel.cs" />
     <EmbeddedResource Include="Views\AddSet.resx">
       <DependentUpon>AddSet.cs</DependentUpon>
     </EmbeddedResource>
