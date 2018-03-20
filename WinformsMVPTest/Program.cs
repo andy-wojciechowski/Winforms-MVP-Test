@@ -7,17 +7,17 @@ using System.Windows.Forms;
 
 namespace WinformsMVPTest
 {
-    static class Program
-    {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        [STAThread]
-        static void Main(string[] args)
-        {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            AutoMapperConfig.Configure();
+	static class Program
+	{
+		/// <summary>
+		/// The main entry point for the application.
+		/// </summary>
+		[STAThread]
+		static void Main(string[] args)
+		{
+			Application.EnableVisualStyles();
+			Application.SetCompatibleTextRenderingDefault(false);
+			AutoMapperConfig.Configure();
 			ISetSelectionListView view = new SetSelectionList();
 			using (var container = ObjectFactory.GetContainer())
 			{
@@ -26,6 +26,6 @@ namespace WinformsMVPTest
 				view.SetPresenter(presenter);
 			}
 			Application.Run(view as SetSelectionList);
-        }
-    }
+		}
+	}
 }

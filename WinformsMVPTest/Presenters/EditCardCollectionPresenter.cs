@@ -19,19 +19,19 @@ namespace WinformsMVPTest.Presenters
 		private BindingList<CardViewModel> OwnedCards { get; set; }
 		private Guid SetID { get; set; }
 
-        public void Cancel()
-        {
-            View.CloseForm();
-        }
+		public void Cancel()
+		{
+			View.CloseForm();
+		}
 
-        public void SetView(IEditCardCollectionView View)
-        {
-            this.View = View;
-        }
+		public void SetView(IEditCardCollectionView View)
+		{
+			this.View = View;
+		}
 
-        public void FillLists()
-        {
-            var cards = this.CardFacade.GetCardsFromSet(this.SetID);
+		public void FillLists()
+		{
+			var cards = this.CardFacade.GetCardsFromSet(this.SetID);
 			this.NotOwnedCards = new BindingList<CardViewModel>(cards.Where(x => x.IsOwned == false).Select(x => Mapper.Map<CardViewModel>(x)).ToList());
 			this.OwnedCards = new BindingList<CardViewModel>(cards.Where(x => x.IsOwned == true).Select(x => Mapper.Map<CardViewModel>(x)).ToList());
 
@@ -43,26 +43,26 @@ namespace WinformsMVPTest.Presenters
 
 			this.HideColumnsFromDataGridView(this.View.CardsNotOwnedGrid, new string[] { "Name" }.ToList());
 			this.HideColumnsFromDataGridView(this.View.CardsOwnedGrid, new string[] { "Name" }.ToList());
-        }
+		}
 
-        public void Save()
-        {
-            foreach(var card in this.OwnedCards)
-            {
-                this.CardFacade.AddCardToCollection(card.Name);
-            }
+		public void Save()
+		{
+			foreach (var card in this.OwnedCards)
+			{
+				this.CardFacade.AddCardToCollection(card.Name);
+			}
 
-            foreach(var card in this.NotOwnedCards)
-            {
-                this.CardFacade.RemoveCardFromCollection(card.Name);
-            }
+			foreach (var card in this.NotOwnedCards)
+			{
+				this.CardFacade.RemoveCardFromCollection(card.Name);
+			}
 
-            View.CloseForm();
-        }
+			View.CloseForm();
+		}
 
-        public void AddToCollection()
-        {
-			if(this.View.CardsNotOwnedGrid.SelectedRows.Cast<DataGridViewRow>().Any())
+		public void AddToCollection()
+		{
+			if (this.View.CardsNotOwnedGrid.SelectedRows.Cast<DataGridViewRow>().Any())
 			{
 				var row = this.View.CardsNotOwnedGrid.SelectedRows[0];
 				var item = this.NotOwnedCards.Single(x => x.Name == (string)row.Cells["Name"].Value);
@@ -76,9 +76,9 @@ namespace WinformsMVPTest.Presenters
 			}
 		}
 
-        public void RemoveFromCollection()
-        {
-			if(this.View.CardsOwnedGrid.SelectedRows.Cast<DataGridViewRow>().Any())
+		public void RemoveFromCollection()
+		{
+			if (this.View.CardsOwnedGrid.SelectedRows.Cast<DataGridViewRow>().Any())
 			{
 				var row = this.View.CardsOwnedGrid.SelectedRows[0];
 				var item = this.OwnedCards.Single(x => x.Name == (string)row.Cells["Name"].Value);
@@ -110,7 +110,7 @@ namespace WinformsMVPTest.Presenters
 
 		public void SelectEntireRow(DataGridView grid)
 		{
-			if(grid.SelectedCells.Cast<DataGridViewCell>().Any())
+			if (grid.SelectedCells.Cast<DataGridViewCell>().Any())
 			{
 				var cell = grid.SelectedCells[0];
 				cell.OwningRow.Selected = true;

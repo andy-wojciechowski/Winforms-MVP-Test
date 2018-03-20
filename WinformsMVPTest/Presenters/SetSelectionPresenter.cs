@@ -14,11 +14,11 @@ namespace WinformsMVPTest.Presenters
 	{
 		public ICardFacade CardFacade { get; set; }
 		private ISetSelectionListView View { get; set; }
-		private bool IsDataBound {get;set;}
+		private bool IsDataBound { get; set; }
 		private DataGridViewRow _lastSelectedRow { get; set; }
 
-        public void AddSet()
-        {
+		public void AddSet()
+		{
 			IAddSetView view = new AddSet();
 			using (var container = ObjectFactory.GetContainer())
 			{
@@ -33,15 +33,15 @@ namespace WinformsMVPTest.Presenters
 				form.FormClosed += (s, e) => this.GetAndFillData();
 				form.ShowDialog(View as SetSelectionList);
 			}
-        }
+		}
 
-        public void SetView(ISetSelectionListView view)
-        {
-            this.View = view;
-        }
+		public void SetView(ISetSelectionListView view)
+		{
+			this.View = view;
+		}
 
-        public void GetAndFillData()
-        {
+		public void GetAndFillData()
+		{
 			var columnsToShow = new string[] { "Name" };
 			var cards = this.CardFacade.GetAllCardSets();
 			this.IsDataBound = false;
@@ -58,8 +58,8 @@ namespace WinformsMVPTest.Presenters
 			}
 		}
 
-        public void UpdateCollection()
-        {
+		public void UpdateCollection()
+		{
 			var setID = this.GetCurrentlySelectedRow();
 			IEditCardCollectionView editCardCollectionView = new EditCardCollection();
 			using (var container = ObjectFactory.GetContainer())
@@ -75,10 +75,10 @@ namespace WinformsMVPTest.Presenters
 			{
 				form.ShowDialog(View as SetSelectionList);
 			}
-        }
+		}
 
-        public void UpdateSet()
-        {
+		public void UpdateSet()
+		{
 			var setID = this.GetCurrentlySelectedRow();
 			IUpdateSetView updateSetView = new UpdateSet();
 			using (var container = ObjectFactory.GetContainer())
@@ -94,7 +94,7 @@ namespace WinformsMVPTest.Presenters
 			{
 				form.ShowDialog(View as SetSelectionList);
 			}
-        }
+		}
 
 		public void UpdateLastSelectedRow()
 		{

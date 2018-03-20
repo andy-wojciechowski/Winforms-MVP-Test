@@ -5,7 +5,7 @@ using System.Windows.Forms;
 namespace WinformsMVPTest.Interfaces.Presenters
 {
 	public interface IEditCardCollectionPresenter
-    {
+	{
 		void FillLists();
 		void AddToCollection();
 		void RemoveFromCollection();

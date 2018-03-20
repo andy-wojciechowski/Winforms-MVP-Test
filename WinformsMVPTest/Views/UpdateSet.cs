@@ -6,29 +6,29 @@ using WinformsMVPTest.Interfaces.Views;
 namespace WinformsMVPTest.Views
 {
 	public partial class UpdateSet : Form, IUpdateSetView
-    {
-        public IUpdateSetPresenter Presenter { get; set; }
+	{
+		public IUpdateSetPresenter Presenter { get; set; }
 		public TextBox NameTextBox => this.txtCardName;
 
 		public UpdateSet()
-        {
-            InitializeComponent();
-        }
+		{
+			InitializeComponent();
+		}
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            Presenter.CancelUpdate();
-        }
+		private void btnCancel_Click(object sender, EventArgs e)
+		{
+			Presenter.CancelUpdate();
+		}
 
-        private void btnOK_Click(object sender, EventArgs e)
-        {
-            Presenter.UpdateSet();
-        }
+		private void btnOK_Click(object sender, EventArgs e)
+		{
+			Presenter.UpdateSet();
+		}
 
-        public void CloseForm()
-        {
-            this.Close();
-        }
+		public void CloseForm()
+		{
+			this.Close();
+		}
 
 		public void SetPresenter(IUpdateSetPresenter presenter)
 		{
